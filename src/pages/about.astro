@@ -1,0 +1,163 @@
+---
+// import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "About Me";
+
+const identity = {
+  firstName: "Sarah",
+  country: "Canada",
+  occupation: "Technical Writer",
+  hobbies: ["photography", "birdwatching", "baseball"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "green";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    
+      .icon {
+        width: 25px;
+      }
+    
+      .toolsParent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      li {
+        background-color: rgb(233, 233, 233);
+        margin: 5px;
+        border-radius: 3px;
+        text-align: center;
+        padding: 4px;
+        padding-left: 7px;
+        padding-right: 7px;
+        font-weight: 500;
+        list-style: none;
+      }
+      .tools {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    
+      .image {
+        width: 200px;
+        padding: 3px;
+        background-color: rgba(10, 10, 10, 0.774);
+        border-radius: 100%;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <BaseLayout>
+    <section>
+      <div class="content">
+        <img src="gnana-sai-reddy-a-2-worlds-24.webp" class="image" alt="" />
+        <h2>Gnana Sai</h2>
+  
+        <p>I am CG Generalist using Blender as my primary tool.</p>
+        <br />
+        <div>Tools that I use</div>
+        <div class="toolsParent">
+          <ul class="tools">
+            <li>Blender</li>
+            <li>Krita</li>
+            <li>SubstancePainter</li>
+            <li>DavinciResolve</li>
+            <li>AfterEffects</li>
+  
+            <li>ThreeJs</li>
+            <li>BabylonJS</li>
+          </ul>
+          <br />
+          <div>Type of projects that I worked on</div>
+          <ul class="tools">
+            <li>Product PackShots</li>
+            <li>Product Animations</li>
+            <li>Game Art</li>
+            <li>WebGL</li>
+            <li>Product Configurators</li>
+          </ul>
+  
+          <div>
+            <ul class="tools">
+              <li>
+                <a href="https://github.com/gnansai" target="_blank" rel="noopener noreferrer">
+                  <img class="icon" src="../icons/github-brands.svg" alt="" /></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/artworks_for_joy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img class="icon" src="../icons/instagram-brands.svg" alt="" /></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.artstation.com/gnan-sai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img class="icon" src="../icons/artstation-brands.svg" alt="" /></a
+                >
+              </li>
+  
+              <li>
+                <a
+                  href="https://www.youtube.com/c/GnanSai3DArtist/videos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img class="icon" src="icons/youtube-brands.svg" alt="" /></a
+                >
+              </li>
+  
+              <li>
+                <a
+                  href="https://sketchfab.com/gnanasai/models"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img class="icon" src="icons/sketchfab-logo-black.svg" alt="" /></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</BaseLayout>
+</html>
+
+
+
