@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ImageGrid from "../components/ImageGrid.astro";
 
+import {webGlProjectsList} from "../content/webGlProjectsList.js"
+
 
 // const allPosts = await Astro.glob('../pages/posts/*.md');
 const threeDProjects = await getCollection("threeDProjects");
@@ -11,10 +13,9 @@ const pageTitle = "webGL Projects"
 <BaseLayout pageTitle={pageTitle}>
   
   <ul>
-    {threeDProjects.map((post) => (
+    {webGlProjectsList.map((post) => (
     
-    <ImageGrid url={`/threeDProjects/${post.slug}/`} title={post.data.title} 
-    image={post.data.thumbnailImage} />
+      <h1>{post.title}</h1>
    
     ))}
     
