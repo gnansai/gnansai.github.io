@@ -1,0 +1,21 @@
+---
+const { title, url, image } = Astro.props;
+---
+
+<div class="col-md-4 pb-4">
+  <a href={url}>
+    <div class="card">
+      <img src={image.url} alt={image.alt} style="width:100%" />
+      <div class="card-body text-center py-1">
+        <p class="card-title mb-0">{title}</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+   a {
+      text-decoration: none; /* Remove underline */
+      color: inherit; /* Inherit the color so that text looks natural */
+    }
+</style>

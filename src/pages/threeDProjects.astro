@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ImageGrid from "../components/ImageGrid.astro";
+
+// const allPosts = await Astro.glob('../pages/posts/*.md');
+const threeDProjects = await getCollection("threeDProjects");
+const pageTitle = "3D Projects";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="row">
+    {
+      threeDProjects.map((post) => (
+        <ImageGrid
+          url={`/threeDProjects/${post.slug}/`}
+          title={post.data.title}
+          image={post.data.thumbnailImage}
+        />
+      ))
+    }
+  </div>
+</BaseLayout>

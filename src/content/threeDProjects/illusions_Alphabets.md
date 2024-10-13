@@ -1,10 +1,10 @@
 ---
-title: 'Post 1'
-author: Tristen Tomczak
-date: '09-09-2024'
-image:
-    url: '/gnana-sai-reddy-a-2-worlds-24.webp'
+title: 'Illusions Alphabets'
+dateCompleted: '09-09-2024'
+thumbnailImage:
+    url: '/illusions_Alphabets/thumbnail_illusions_Alphabets.webp'
     alt: 'Post Thumbnail'
+toolsUsed: ["blender","krita"]
 ---
 
 Aenean a ex et metus finibus malesuada commodo in magna. In ut libero urna. Aenean in quam in ipsum rutrum egestas. Donec semper dignissim ante. Sed efficitur mi et sapien ultrices malesuada. Aliquam fermentum aliquam ante, eu semper mi vestibulum quis. Sed et purus metus. Pellentesque vestibulum commodo euismod. Duis a mauris accumsan lorem laoreet tempor. Mauris accumsan varius metus, in rutrum magna accumsan eget. Pellentesque at leo at sem tempor hendrerit non sit amet ante. Cras commodo augue sed magna rutrum rutrum.
