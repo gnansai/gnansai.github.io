@@ -4,160 +4,93 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "About Me";
-
-const identity = {
-  firstName: "Sarah",
-  country: "Canada",
-  occupation: "Technical Writer",
-  hobbies: ["photography", "birdwatching", "baseball"],
-};
-
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
-
-const happy = true;
-const finished = false;
-const goal = 3;
-
-const skillColor = "green";
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-    
-      .icon {
-        width: 25px;
-      }
-    
-      .toolsParent {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-    
-      li {
-        background-color: rgb(233, 233, 233);
-        margin: 5px;
-        border-radius: 3px;
-        text-align: center;
-        padding: 4px;
-        padding-left: 7px;
-        padding-right: 7px;
-        font-weight: 500;
-        list-style: none;
-      }
-      .tools {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-    
-      .image {
-        width: 200px;
-        padding: 3px;
-        background-color: rgba(10, 10, 10, 0.774);
-        border-radius: 100%;
-      }
-    </style>
-    
-  </head>
-  <body>
-    <BaseLayout>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{pageTitle}</title>
+  <link rel="stylesheet" href="../styles/global.css" />
+</head>
+<body>
+  <BaseLayout>
     <section>
-      <div class="content">
-        <img src="gnana-sai-reddy-a-2-worlds-24.webp" class="image" alt="" />
+      <div class="container text-center mt-5">
+        <!-- Image section -->
+        <img src="gnana-sai-reddy-a-2-worlds-24.webp" class="img-fluid rounded-circle mb-4" alt="Gnana Sai" width="200"/>
         <h2>Gnana Sai</h2>
-  
-        <p>I am CG Generalist using Blender as my primary tool.</p>
+        <p class="mt-3">I am a 3D Generalist specializing in creating immersive and engaging visuals using Blender as my primary tool. My passion lies in transforming ideas into stunning 3D art.</p>
         <br />
-        <div>Tools that I use</div>
-        <div class="toolsParent">
-          <ul class="tools">
-            <li>Blender</li>
-            <li>Krita</li>
-            <li>SubstancePainter</li>
-            <li>DavinciResolve</li>
-            <li>AfterEffects</li>
-  
-            <li>ThreeJs</li>
-            <li>BabylonJS</li>
+        <!-- Tools section -->
+        <h4>Tools that I use</h4>
+        <div class="mt-3">
+          <ul class="list-inline">
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Blender</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Krita</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Substance Painter</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Davinci Resolve</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">After Effects</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Three.js</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">BabylonJS</li>
           </ul>
-          <br />
-          <div>Type of projects that I worked on</div>
-          <ul class="tools">
-            <li>Product PackShots</li>
-            <li>Product Animations</li>
-            <li>Game Art</li>
-            <li>WebGL</li>
-            <li>Product Configurators</li>
+        </div>
+        <!-- Projects section -->
+        <h4 class="mt-4">Types of Projects I’ve Worked On</h4>
+        <div class="mt-3">
+          <ul class="list-inline">
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Product PackShots</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Product Animations</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Game Art</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">WebGL</li>
+            <li class="list-inline-item bg-body-secondary p-2 m-1 rounded">Product Configurators</li>
           </ul>
-  
-          <div>
-            <ul class="tools">
-              <li>
-                <a href="https://github.com/gnansai" target="_blank" rel="noopener noreferrer">
-                  <img class="icon" src="../icons/github-brands.svg" alt="" /></a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/artworks_for_joy/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img class="icon" src="../icons/instagram-brands.svg" alt="" /></a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://www.artstation.com/gnan-sai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img class="icon" src="../icons/artstation-brands.svg" alt="" /></a
-                >
-              </li>
-  
-              <li>
-                <a
-                  href="https://www.youtube.com/c/GnanSai3DArtist/videos"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img class="icon" src="icons/youtube-brands.svg" alt="" /></a
-                >
-              </li>
-  
-              <li>
-                <a
-                  href="https://sketchfab.com/gnanasai/models"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img class="icon" src="icons/sketchfab-logo-black.svg" alt="" /></a
-                >
-              </li>
-            </ul>
-          </div>
+        </div>
+        <!-- Social links -->
+        <div class="mt-4">
+          <h4>Connect with Me</h4>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="https://github.com/gnansai" target="_blank" rel="noopener noreferrer">
+                <img class="icon" src="../icons/github-brands.svg" width="25" alt="GitHub" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/artworks_for_joy/" target="_blank" rel="noopener noreferrer">
+                <img class="icon" src="../icons/instagram-brands.svg" width="25" alt="Instagram" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.artstation.com/gnan-sai" target="_blank" rel="noopener noreferrer">
+                <img class="icon" src="../icons/artstation-brands.svg" width="25" alt="ArtStation" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.youtube.com/c/GnanSai3DArtist/videos" target="_blank" rel="noopener noreferrer">
+                <img class="icon" src="../icons/youtube-brands.svg" width="25" alt="YouTube" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://sketchfab.com/gnanasai/models" target="_blank" rel="noopener noreferrer">
+                <img class="icon" src="../icons/sketchfab-logo-black.svg" width="25" alt="Sketchfab" />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
-  </body>
-</BaseLayout>
+  </BaseLayout>
+</body>
 </html>
 
+<style>
+  .icon {
+    filter: invert(48%);
+    transition: filter 0.3s; /* Smooth transition for filter changes */
+  }
 
-
+  /* Add hover effect */
+  /* .icon:hover {
+    filter: brightness(0) invert(1); 
+  } */
+</style>
