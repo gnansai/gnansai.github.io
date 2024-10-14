@@ -4,10 +4,10 @@ const { title, url, image } = Astro.props;
 
 <div class="col-md-4 pb-4">
   <a href={url}>
-    <div class="card">
-      <img src={image.url} alt={image.alt} style="width:100%" />
-      <div class="card-body text-center py-1 bg-body-tertiary">
-        <p class="card-title mb-0">{title}</p>
+    <div class="card bg-body-tertiary">
+      <img src={image.url} alt={image.alt} style="width:100%" class="rounded-top" />
+      <div class="card-body text-center py-1 rounded-bottom">
+      <p class="card-title mb-0 ">{title}</p>
       </div>
     </div>
   </a>

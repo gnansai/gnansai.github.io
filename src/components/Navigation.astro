@@ -1,11 +1,17 @@
 ---
+import { navItems } from "../data/navItems.js";
 
+import { socialLinks } from "../data/socialLinks.js";
 ---
-
+<!-- data-astro-reload -->
 <div class="container">
-  <nav class="navbar navbar-expand-sm fixed-top bg-body-tertiary">
+  <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
     <div class="container">
-      <a class="navbar-brand nav-item" href="/">GnanaSai</a>
+      <a
+        class="navbar-brand nav-item btn btn-outline-secondary nav-link px-3 py-2"
+        href="/"
+        >GnanaSai</a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -19,67 +25,33 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExample">
-        <ul class="navbar-nav ms-auto me-auto mb-0 mb-sm-0">
-          <li class="nav-item">
-            <a class="nav-link" href="/webGLProjects">WebGLProjects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/threeDProjects">3DProjects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
-          </li>
+        <ul class="navbar-nav ms-auto me-auto mb-0 mb-sm-0 btn-group">
+          {
+            navItems.map((item) => (
+              <li  class="nav-item btn btn-outline-secondary nav-link px-3">
+                <a  class="nav-link py-0" href={item.link}>
+                  {item.title}
+                </a>
+              </li>
+            ))
+          }
         </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="https://github.com/gnansai"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img class="navIcon" src="/icons/github-brands.svg" alt="" /></a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="https://www.instagram.com/artworks_for_joy/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                class="navIcon"
-                src="/icons/instagram-brands.svg"
-                alt=""
-              /></a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="https://www.artstation.com/gnan-sai"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                class="navIcon"
-                src="/icons/artstation-brands.svg"
-                alt=""
-              /></a
-            >
-          </li>
 
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="https://www.youtube.com/c/GnanSai3DArtist/videos"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img class="navIcon" src="/icons/youtube-brands.svg" alt="" /></a
-            >
-          </li>
+        <ul class="navbar-nav btn-group">
+          {
+            socialLinks.map((item) => (
+              <li class="nav-item">
+                <a
+                  class="btn btn-outline-secondary nav-link"
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img class="navIcon" src={item.img.src} alt={item.img.alt} />
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
@@ -91,9 +63,8 @@
     filter: invert(48%) sepia(79%) brightness(90%) contrast(55%);
     width: 23px;
   }
-  /* .navIcon:hover {
-    filter: brightness(90%) contrast(55%);
-  } */
 
- 
+  .btn {
+    margin-right: 8px;
+  }
 </style>

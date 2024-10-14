@@ -18,19 +18,20 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 		// this.renderer.setPixelRatio(window.devicePixelRatio)
 		this.renderer.setPixelRatio(2)
 
-		this.container.appendChild(this.renderer.domElement)
+		
 		this.controls = new OrbitControls(this.camera, this.renderer.domElement )
 
 
 		this.time = 0
-		this.resize()
-		this.addObjects()
-		this.render()
+		// this.resize()
+		// this.addObjects()
+		// this.render()
 
-		this.setupResize()
+		// this.setupResize()
 	}
 
 	resize(){
+		this.container.appendChild(this.renderer.domElement)
 		this.width = this.container.offsetWidth
 		this.height = this.container.offsetHeight
 		this.renderer.setSize( this.width, this.height )
@@ -52,9 +53,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 	}
 
 	render(){
-		this.time += 0.05
-		this.mesh.rotation.x = this.time / 2000;
-		this.mesh.rotation.y = this.time / 1000;
+		// this.time += 0.05
+		// this.mesh.rotation.x = this.time / 2000;
+		// this.mesh.rotation.y = this.time / 1000;
 
 		this.renderer.render( this.scene, this.camera );
 		// console.log(this.time)
@@ -62,6 +63,5 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 	}
 }
 
-new Sketch({
-	domElement: document.getElementById('container')
-})
+export {Sketch}
+

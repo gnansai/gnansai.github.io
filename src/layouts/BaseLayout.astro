@@ -1,33 +1,88 @@
 ---
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
-// import '../styles/global.css';
+import { ViewTransitions } from "astro:transitions";
+import Navigation from "../components/Navigation.astro";
+
+import Footer from "../components/Footer.astro";
 const { pageTitle } = Astro.props;
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootswatch/dist/morph/bootstrap.min.css";
 ---
-<html lang="en" data-bs-theme="dark">
+
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <ViewTransitions />
   </head>
 
-  
-  </style>
   <body>
-    
     <div class="container" style="padding-top: 4rem;">
-    <Navigation />
-    <h1>{pageTitle}</h1>
-    <slot />
-    <!-- <Footer /> -->
-    
-  </div>
-  <script>
-    import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-  </script>
+      <Navigation />
+      <button type="button" class="btn btn-primary" id="ToggleBtn">Hello</button
+      >
+      <h1>{pageTitle}</h1>
+      <slot />
+      <!-- <Footer /> -->
+    </div>
+    <script>
+      import "bootstrap/dist/js/bootstrap.bundle.min.js";
+    </script>
+
+    <script>
+      let toggle = true;
+
+      document.addEventListener("astro:page-load", () => {
+        const theme = (() => {
+          if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+          ) {
+            return localStorage.getItem("theme");
+          }
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
+          }
+          return "light";
+        })();
+
+        if (theme === "light") {
+          document.documentElement.setAttribute("data-bs-theme", "light");
+        } else {
+          document.documentElement.setAttribute("data-bs-theme", "dark");
+        }
+
+        window.localStorage.setItem("theme", theme);
+
+        const handleToggleClick = () => {
+          if (toggle) {
+            document.documentElement.setAttribute("data-bs-theme", "dark");
+            
+            toggle = !toggle;
+            localStorage.setItem("theme", "dark");
+          } else if (!toggle) {
+            document.documentElement.setAttribute("data-bs-theme", "light");
+            toggle = !toggle;
+            localStorage.setItem("theme", "light");
+          }
+        };
+
+        document.getElementById("ToggleBtn").onclick = handleToggleClick;
+      });
+    </script>
+
+    <script is:inline>
+      function applyTheme() {
+        localStorage.theme === "dark"
+          ? document.documentElement.setAttribute("data-bs-theme", "dark")
+          : document.documentElement.setAttribute("data-bs-theme", "light")
+      }
+
+      document.addEventListener("astro:after-swap", applyTheme);
+      applyTheme();
+    </script>
+
+
   </body>
- 
 </html>
