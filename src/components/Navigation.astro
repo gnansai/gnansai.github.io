@@ -3,14 +3,14 @@ import { navItems } from "../data/navItems.js";
 
 import { socialLinks } from "../data/socialLinks.js";
 ---
+
 <!-- data-astro-reload -->
 <div class="container">
   <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
     <div class="container">
       <a
-        class="navbar-brand nav-item btn btn-outline-secondary nav-link px-3 py-2"
-        href="/"
-        >GnanaSai</a
+        class="navbar-brand nav-item btn btn-outline-secondary nav-link px-3"
+        href="/">GnanaSai</a
       >
       <button
         class="navbar-toggler"
@@ -25,11 +25,14 @@ import { socialLinks } from "../data/socialLinks.js";
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExample">
-        <ul class="navbar-nav ms-auto me-auto mb-0 mb-sm-0 btn-group">
+        <ul class="navbar-nav ms-auto me-auto mb-0 mb-sm-0">
           {
             navItems.map((item) => (
-              <li  class="nav-item btn btn-outline-secondary nav-link px-3">
-                <a  class="nav-link py-0" href={item.link}>
+              <li class="nav-item">
+                <a
+                  class="nav-link btn btn-outline-secondary px-3"
+                  href={item.link}
+                >
                   {item.title}
                 </a>
               </li>
@@ -37,7 +40,7 @@ import { socialLinks } from "../data/socialLinks.js";
           }
         </ul>
 
-        <ul class="navbar-nav btn-group">
+        <ul class="navbar-nav">
           {
             socialLinks.map((item) => (
               <li class="nav-item">
@@ -53,6 +56,11 @@ import { socialLinks } from "../data/socialLinks.js";
             ))
           }
         </ul>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="darkModeSwitch" />
+          <label class="form-check-label" for="darkModeSwitch"></label>
+        </div>
       </div>
     </div>
   </nav>
@@ -68,3 +76,59 @@ import { socialLinks } from "../data/socialLinks.js";
     margin-right: 8px;
   }
 </style>
+
+<script>
+  console.log(localStorage.getItem("theme"));
+
+  document.addEventListener("astro:page-load", () => {
+    const switchElement = document.getElementById("darkModeSwitch");
+    const theme = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    if (theme === "light") {
+      document.documentElement.setAttribute("data-bs-theme", "light");
+      switchElement.checked = false;
+    } else {
+      document.documentElement.setAttribute("data-bs-theme", "dark");
+      switchElement.checked = true;
+    }
+
+    window.localStorage.setItem("theme", theme);
+
+    switchElement.addEventListener("change", function () {
+      if (switchElement.checked) {
+        document.documentElement.setAttribute("data-bs-theme", "dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-bs-theme", "light");
+        localStorage.setItem("theme", "light");
+      }
+    });
+  });
+</script>
+
+<script is:inline>
+  const switchElement = document.getElementById("darkModeSwitch");
+  function applyTheme() {
+    if (localStorage.theme === "dark") {
+      document.documentElement.setAttribute("data-bs-theme", "dark");
+      switchElement.checked = false;
+    } else {
+      document.documentElement.setAttribute("data-bs-theme", "light");
+      switchElement.checked = true;
+    }
+  }
+
+  document.addEventListener("astro:after-swap", applyTheme);
+  applyTheme();
+</script>

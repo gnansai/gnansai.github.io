@@ -20,8 +20,7 @@ import "bootswatch/dist/morph/bootstrap.min.css";
   <body>
     <div class="container" style="padding-top: 4rem;">
       <Navigation />
-      <button type="button" class="btn btn-primary" id="ToggleBtn">Hello</button
-      >
+      
       <h1>{pageTitle}</h1>
       <slot />
       <!-- <Footer /> -->
@@ -30,58 +29,7 @@ import "bootswatch/dist/morph/bootstrap.min.css";
       import "bootstrap/dist/js/bootstrap.bundle.min.js";
     </script>
 
-    <script>
-      let toggle = true;
-
-      document.addEventListener("astro:page-load", () => {
-        const theme = (() => {
-          if (
-            typeof localStorage !== "undefined" &&
-            localStorage.getItem("theme")
-          ) {
-            return localStorage.getItem("theme");
-          }
-          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            return "dark";
-          }
-          return "light";
-        })();
-
-        if (theme === "light") {
-          document.documentElement.setAttribute("data-bs-theme", "light");
-        } else {
-          document.documentElement.setAttribute("data-bs-theme", "dark");
-        }
-
-        window.localStorage.setItem("theme", theme);
-
-        const handleToggleClick = () => {
-          if (toggle) {
-            document.documentElement.setAttribute("data-bs-theme", "dark");
-            
-            toggle = !toggle;
-            localStorage.setItem("theme", "dark");
-          } else if (!toggle) {
-            document.documentElement.setAttribute("data-bs-theme", "light");
-            toggle = !toggle;
-            localStorage.setItem("theme", "light");
-          }
-        };
-
-        document.getElementById("ToggleBtn").onclick = handleToggleClick;
-      });
-    </script>
-
-    <script is:inline>
-      function applyTheme() {
-        localStorage.theme === "dark"
-          ? document.documentElement.setAttribute("data-bs-theme", "dark")
-          : document.documentElement.setAttribute("data-bs-theme", "light")
-      }
-
-      document.addEventListener("astro:after-swap", applyTheme);
-      applyTheme();
-    </script>
+    
 
 
   </body>
