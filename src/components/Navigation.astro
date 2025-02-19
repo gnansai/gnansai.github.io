@@ -7,7 +7,7 @@ import { socialLinks } from "../data/socialLinks.js";
 <!-- data-astro-reload -->
 <nav class="navbar navbar-expand-md fixed-top blurTest">
   <div class="container">
-    <a class="navbar-brand px-3" href="/">GnanaSai</a>
+    <a id="navbrand" class="navbar-brand px-3" href="/">GnanaSai</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -82,6 +82,9 @@ import { socialLinks } from "../data/socialLinks.js";
   document.addEventListener("astro:page-load", () => {
     const navList = document.getElementById("navList");
     const navLinks = navList.querySelectorAll(".nav-link");
+    const homeLink = document.getElementById("navbrand");
+
+    console.log(window.location.href)
 
     // Function to set active class
     function setActiveNav(link) {
@@ -106,6 +109,10 @@ import { socialLinks } from "../data/socialLinks.js";
       nav.addEventListener("click", (e) => {
         setActiveNav(e.target);
       });
+    });
+
+    homeLink.addEventListener("click", (e) => {
+      setActiveNav(e.target);
     });
 
     const switchElement = document.getElementById("darkModeSwitch");
