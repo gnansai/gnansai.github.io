@@ -33,12 +33,12 @@ import { socialLinks } from "../data/socialLinks.js";
         }
       </ul>
 
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" style="flex-direction: row;">
         {
           socialLinks.map((item) => (
             <li class="nav-item">
               <a
-                class="nav-link"
+                class="nav-link px-2"
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -82,38 +82,22 @@ import { socialLinks } from "../data/socialLinks.js";
   document.addEventListener("astro:page-load", () => {
     const navList = document.getElementById("navList");
     const navLinks = navList.querySelectorAll(".nav-link");
-    const homeLink = document.getElementById("navbrand");
-
-    console.log(window.location.href)
 
     // Function to set active class
     function setActiveNav(link) {
       navLinks.forEach((nav) => nav.classList.remove("active"));
       link.classList.add("active");
-      localStorage.setItem("activeNav", link.getAttribute("data-nav"));
     }
 
-    // Restore active state on page load
-    const savedNav = localStorage.getItem("activeNav");
-    if (savedNav) {
-      const activeLink = [...navLinks].find(
-        (nav) => nav.getAttribute("data-nav") === savedNav
-      );
-      if (activeLink) {
-        setActiveNav(activeLink);
+
+    navLinks.forEach(function(nav){
+      if (nav.getAttribute("data-nav") == window.location.pathname ) {
+        console.log(nav);
+        setActiveNav(nav);
       }
-    }
-
-    // Add click event listener
-    navLinks.forEach((nav) => {
-      nav.addEventListener("click", (e) => {
-        setActiveNav(e.target);
-      });
     });
 
-    homeLink.addEventListener("click", (e) => {
-      setActiveNav(e.target);
-    });
+
 
     const switchElement = document.getElementById("darkModeSwitch");
     const theme = (() => {

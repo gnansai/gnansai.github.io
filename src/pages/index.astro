@@ -20,7 +20,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   sketch.render();
   sketch.setupResize();
   let x = 1;
-  console.log(x);
+  // console.log(x);
 
   document.addEventListener("astro:page-load", () => {
     if (document.getElementById("container")) {
@@ -30,7 +30,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       sketch.addObjects();
       sketch.render();
       sketch.setupResize();
-	  console.log(sketch);
+	  // console.log(sketch);
     }
   });
 </script>
