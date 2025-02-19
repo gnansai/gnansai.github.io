@@ -55,8 +55,6 @@ import Logo from "../../public/icons/Threejs_Icon.svg";
                 >
                   <path d={item.svgPath} />
                 </svg>
-
-                
               </a>
             </li>
           ))
@@ -109,39 +107,23 @@ import Logo from "../../public/icons/Threejs_Icon.svg";
       }
     });
 
+    const htmlElement = document.documentElement;
     const switchElement = document.getElementById("darkModeSwitch");
-    const theme = (() => {
-      if (
-        typeof localStorage !== "undefined" &&
-        localStorage.getItem("theme")
-      ) {
-        return localStorage.getItem("theme");
-      }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
-      return "light";
-    })();
 
-    if (theme === "light") {
-      document.documentElement.setAttribute("data-bs-theme", "light");
-      switchElement.checked = false;
-    } else {
-      document.documentElement.setAttribute("data-bs-theme", "dark");
-      switchElement.checked = true;
-    }
-
-    window.localStorage.setItem("theme", theme);
+    const currentTheme = localStorage.getItem("bsTheme") || "dark";
+    htmlElement.setAttribute("data-bs-theme", currentTheme);
+    switchElement.checked = currentTheme === "dark";
 
     switchElement.addEventListener("change", function () {
-      if (switchElement.checked) {
-        document.documentElement.setAttribute("data-bs-theme", "dark");
-        localStorage.setItem("theme", "dark");
+      if (this.checked) {
+        htmlElement.setAttribute("data-bs-theme", "dark");
+        localStorage.setItem("bsTheme", "dark");
       } else {
-        document.documentElement.setAttribute("data-bs-theme", "light");
-        localStorage.setItem("theme", "light");
+        htmlElement.setAttribute("data-bs-theme", "light");
+        localStorage.setItem("bsTheme", "light");
       }
     });
+
   });
 </script>
 
