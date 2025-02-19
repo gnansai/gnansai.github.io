@@ -5,71 +5,70 @@ import { socialLinks } from "../data/socialLinks.js";
 ---
 
 <!-- data-astro-reload -->
-<div class="container">
-  <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
-    <div class="container">
-      <a
-        class="navbar-brand nav-item btn btn-outline-secondary nav-link px-3"
-        href="/">GnanaSai</a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarsExample"
-        aria-controls="navbarsExample"
-        aria-expanded="false"
-        aria-label="Toggle navigation "
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<nav class="navbar navbar-expand-md fixed-top blurTest">
+  <div class="container">
+    <a class="navbar-brand px-3" href="/">GnanaSai</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarsExample"
+      aria-controls="navbarsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation "
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarsExample">
-        <ul class="navbar-nav ms-auto me-auto mb-0 mb-sm-0">
-          {
-            navItems.map((item) => (
-              <li class="nav-item">
-                <a
-                  class="nav-link btn btn-outline-secondary px-3"
-                  href={item.link}
-                >
-                  {item.title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+    <div class="collapse navbar-collapse" id="navbarsExample">
+      <ul id="navList" class="navbar-nav ms-auto me-auto mb-0 mb-sm-0">
+        {
+          navItems.map((item) => (
+            <li class="nav-item">
+              <a class="nav-link px-3" href={item.link} data-nav={item.link}>
+                {item.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
 
-        <ul class="navbar-nav">
-          {
-            socialLinks.map((item) => (
-              <li class="nav-item">
-                <a
-                  class="btn btn-outline-secondary nav-link"
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img class="navIcon" src={item.img.src} alt={item.img.alt} />
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+      <ul class="navbar-nav">
+        {
+          socialLinks.map((item) => (
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img class="navIcon" src={item.img.src} alt={item.img.alt} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
 
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="darkModeSwitch" />
-          <label class="form-check-label" for="darkModeSwitch"></label>
-        </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="darkModeSwitch" />
+        <label class="form-check-label" for="darkModeSwitch"></label>
       </div>
     </div>
-  </nav>
-</div>
+  </div>
+</nav>
 
 <style>
+  .blurTest {
+    backdrop-filter: blur(20px);
+    background-color: rgba(209, 209, 209, 0.158);
+    /* transition: background-color 0.3s ease-in-out; */
+  }
+
   .navIcon {
-    filter: invert(48%) sepia(79%) brightness(90%) contrast(55%);
+    filter: invert(50%) brightness(90%) contrast(90%);
     width: 23px;
+    /* filter: var(--bs-btn-hover-icon-filter); */
   }
 
   .btn {
@@ -81,6 +80,34 @@ import { socialLinks } from "../data/socialLinks.js";
   console.log(localStorage.getItem("theme"));
 
   document.addEventListener("astro:page-load", () => {
+    const navList = document.getElementById("navList");
+    const navLinks = navList.querySelectorAll(".nav-link");
+
+    // Function to set active class
+    function setActiveNav(link) {
+      navLinks.forEach((nav) => nav.classList.remove("active"));
+      link.classList.add("active");
+      localStorage.setItem("activeNav", link.getAttribute("data-nav"));
+    }
+
+    // Restore active state on page load
+    const savedNav = localStorage.getItem("activeNav");
+    if (savedNav) {
+      const activeLink = [...navLinks].find(
+        (nav) => nav.getAttribute("data-nav") === savedNav
+      );
+      if (activeLink) {
+        setActiveNav(activeLink);
+      }
+    }
+
+    // Add click event listener
+    navLinks.forEach((nav) => {
+      nav.addEventListener("click", (e) => {
+        setActiveNav(e.target);
+      });
+    });
+
     const switchElement = document.getElementById("darkModeSwitch");
     const theme = (() => {
       if (
