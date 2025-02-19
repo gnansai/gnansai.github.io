@@ -1,22 +1,82 @@
-/* Width and height of scrollbar */
+/* Scrollbar width and height */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f100;
-    border-radius: 10px;
+  border-radius: 10px;
+  background: transparent; /* Keeps it subtle */
 }
 
-/* Handle */
+/* Scrollbar handle (thumb) */
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  filter: brightness(1.2);
+}
+
+/* Light Mode */
+[data-bs-theme="light"] ::-webkit-scrollbar-track {
+  background: #e4e4e4;
+}
+
+[data-bs-theme="light"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #c9c9c9, #949494);
+}
+
+/* Dark Mode */
+[data-bs-theme="dark"] ::-webkit-scrollbar-track {
+  background: #1b1b1d;
+}
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #838383, #3f3f3f);
+}
+
+:root {
+  --bs-body-font-family: "Poppins", sans-serif; /* Change to your desired font */
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+textarea,
+select,
+label,
+a,
+span,
+.btn {
+  font-family: "Poppins", sans-serif !important;
+}
+body {
+  transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+[data-bs-theme="light"] body {
+  background: #e4e4e4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #fafafa, #d8d8d8) fixed; /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #fafafa, #d8d8d8) fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+[data-bs-theme="dark"] body {
+  background: #292929; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #292e33, #1b1b1d) fixed; /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #292e33, #1b1b1d) fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }

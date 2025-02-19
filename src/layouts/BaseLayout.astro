@@ -1,12 +1,12 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter, ViewTransitions } from "astro:transitions";
 import Navigation from "../components/Navigation.astro";
 
 import Footer from "../components/Footer.astro";
 const { pageTitle } = Astro.props;
 import "../styles/global.css"; 
 import "bootswatch/dist/litera/bootstrap.min.css";
-import Logo from '../../public/icons/Threejs_Icon.svg';
+
 ---
 
 
@@ -17,13 +17,14 @@ import Logo from '../../public/icons/Threejs_Icon.svg';
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     
-    <ViewTransitions />
+    <ClientRouter />
   </head>
 
   <body>
-    <div class="container" style="padding-top: 4rem;">
+    <div class="container" style="padding-top: 4rem;" >
       <Navigation />
       
       <h1>{pageTitle}</h1>
