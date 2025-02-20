@@ -11,23 +11,14 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 		this.camera = new THREE.PerspectiveCamera( 70, this.width / this.height, 0.01, 10 );
 		this.camera.position.z = 1;
-
 		this.scene = new THREE.Scene();
-
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
-		// this.renderer.setPixelRatio(window.devicePixelRatio)
 		this.renderer.setPixelRatio(2)
 
-		
 		this.controls = new OrbitControls(this.camera, this.renderer.domElement )
-
+		this.controls.enableDamping = true;
 
 		this.time = 0
-		// this.resize()
-		// this.addObjects()
-		// this.render()
-
-		// this.setupResize()
 	}
 
 	resize(){
@@ -53,12 +44,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 	}
 
 	render(){
-		// this.time += 0.05
-		// this.mesh.rotation.x = this.time / 2000;
-		// this.mesh.rotation.y = this.time / 1000;
 
 		this.renderer.render( this.scene, this.camera );
-		// console.log(this.time)
+		this.controls.update(); 
 		requestAnimationFrame(this.render.bind(this))
 	}
 }
