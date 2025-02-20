@@ -6,8 +6,8 @@ import Logo from "../../public/icons/Threejs_Icon.svg";
 ---
 
 <!-- data-astro-reload -->
-<nav class="navbar navbar-expand-md fixed-top blurTest">
-  <div class="container">
+<nav class="navbar navbar-expand-md fixed-top bg-secondary-subtle">
+  <div class="container" transition:persist>
     <a id="navbrand" class="navbar-brand px-3" href="/">GnanaSai</a>
     <button
       class="navbar-toggler"
@@ -97,8 +97,8 @@ import Logo from "../../public/icons/Threejs_Icon.svg";
 
 <style>
   .blurTest {
-    backdrop-filter: blur(20px);
-    background-color: rgba(209, 209, 209, 0.158);
+    /* backdrop-filter: blur(100px); */
+    /* background-color: rgba(209, 209, 209, 0.685); */
     /* transition: background-color 0.3s ease-in-out; */
   }
 
@@ -147,7 +147,7 @@ import Logo from "../../public/icons/Threejs_Icon.svg";
 </style>
 
 <script>
-  console.log(localStorage.getItem("theme"));
+  // console.log(localStorage.getItem("theme"));
 
   document.addEventListener("astro:page-load", () => {
     const navList = document.getElementById("navList");
