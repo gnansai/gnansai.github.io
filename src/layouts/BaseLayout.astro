@@ -2,13 +2,14 @@
 import { ClientRouter, ViewTransitions } from "astro:transitions";
 import Navigation from "../components/Navigation.astro";
 
-import Footer from "../components/Footer.astro";
 const { pageTitle } = Astro.props;
 import "../styles/global.css";
 import "bootswatch/dist/litera/bootstrap.min.css";
+
+import { fade } from 'astro:transitions';
 ---
 
-<html lang="en">
+<html lang="en" transition:name="root" transition:animate="none">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,35 +17,19 @@ import "bootswatch/dist/litera/bootstrap.min.css";
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
 
-    <!-- <script>
-      (function () {
-        const storedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-
-        console.log(prefersDark);
-        const theme = storedTheme || (prefersDark ? "dark" : "light");
-        // Set the data attribute that Bootstrap uses
-        document.documentElement.setAttribute("data-bs-theme", theme);
-      })();
-    </script> -->
-
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Other head content -->
+    <ClientRouter />
   </head>
 
-  <ClientRouter />
-
   <body>
-    <div class="container" style="padding-top: 4rem;">
+    <div transition:animate={fade({ duration: '0.4s' })}  class="container" style="padding-top: 4rem;">
       <Navigation />
 
-      <h1>{pageTitle}</h1>
+      <h1 >{pageTitle}</h1>
       <slot />
       <!-- <Footer /> -->
     </div>
@@ -52,6 +37,4 @@ import "bootswatch/dist/litera/bootstrap.min.css";
       import "bootstrap/dist/js/bootstrap.bundle.min.js";
     </script>
   </body>
-
-
 </html>
