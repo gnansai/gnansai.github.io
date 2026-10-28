@@ -11,5 +11,17 @@ export const projectTypes = [{
     name: "WebGL"
 },
 {
+    name: "WebGPU"
+},
+{
+    name: "TSL"
+},
+{
+    name: "Technical Art"
+},
+{
+    name: "Web-Ready Optimization"
+},
+{
     name: "Product Configurators"
 }]
