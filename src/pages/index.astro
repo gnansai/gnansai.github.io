@@ -3,7 +3,10 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
-const projects = await getCollection("threeDProjects");
+// Newest first; undated projects (web demos) go last.
+const projects = (await getCollection("threeDProjects")).sort((a, b) =>
+  (b.data.dateCompleted ?? "").localeCompare(a.data.dateCompleted ?? "")
+);
 const filters = ["All", ...new Set(projects.map((project) => project.data.category))];
 ---
 
@@ -30,7 +33,8 @@ const filters = ["All", ...new Set(projects.map((project) => project.data.catego
       {
         projects.map((project) => (
           <ProjectCard
-            url={`/work/${project.id}/`}
+            url={project.data.liveUrl ?? project.data.postUrl ?? `/work/${project.id}/`}
+            external={Boolean(project.data.liveUrl ?? project.data.postUrl)}
             title={project.data.title}
             image={project.data.thumbnailImage}
             category={project.data.category}
@@ -43,10 +47,10 @@ const filters = ["All", ...new Set(projects.map((project) => project.data.catego
 
 <style>
   .intro {
-    padding-block: 120px 32px;
+    padding-block: 56px 32px;
     display: flex;
     flex-direction: column;
-    gap: 72px;
+    gap: 48px;
   }
 
   .hero {
@@ -57,9 +61,9 @@ const filters = ["All", ...new Set(projects.map((project) => project.data.catego
 
   h1 {
     margin: 0;
-    max-width: 760px;
+    max-width: 640px;
     font-weight: 500;
-    font-size: clamp(32px, 4.5vw, 52px);
+    font-size: clamp(28px, 3.5vw, 40px);
     line-height: 1.15;
     letter-spacing: -0.02em;
   }
@@ -111,16 +115,44 @@ const filters = ["All", ...new Set(projects.map((project) => project.data.catego
 </style>
 
 <script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>("[data-filter]")];
   const cards = document.querySelectorAll<HTMLElement>("[data-category]");
+
+  function applyFilter(active: string) {
+    buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === active)));
+    cards.forEach((card) => {
+      card.hidden = active !== "All" && card.dataset.category !== active;
+    });
+  }
+
+  // Keep the filter in the URL (back button, shared links) and for the rest of the visit
+  // (the "All work" link on project pages).
+  function saveFilter(active: string) {
+    const url = new URL(location.href);
+    if (active === "All") url.searchParams.delete("filter");
+    else url.searchParams.set("filter", active);
+    history.replaceState(null, "", url);
+    try {
+      sessionStorage.setItem("filter", active);
+    } catch {}
+  }
+
+  let saved: string | null = new URLSearchParams(location.search).get("filter");
+  if (!saved) {
+    try {
+      saved = sessionStorage.getItem("filter");
+    } catch {}
+  }
+  if (saved && buttons.some((b) => b.dataset.filter === saved)) {
+    applyFilter(saved);
+    saveFilter(saved);
+  }
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      const active = button.dataset.filter;
-      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
-      cards.forEach((card) => {
-        card.hidden = active !== "All" && card.dataset.category !== active;
-      });
+      const active = button.dataset.filter ?? "All";
+      applyFilter(active);
+      saveFilter(active);
     });
   });
 </script>

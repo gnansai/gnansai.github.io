@@ -1,11 +1,23 @@
 ---
-const { url, title, image, category } = Astro.props;
+const { url, title, image, category, external = false } = Astro.props;
 ---
 
-<a class="card" href={url} data-category={category}>
-  <img src={image.url} alt={image.alt} loading="lazy" />
+<a
+  class="card"
+  href={url}
+  data-category={category}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+>
+  {
+    image ? (
+      <img src={image.url} alt={image.alt} loading="lazy" />
+    ) : (
+      <div class="thumb" aria-hidden="true">{title}</div>
+    )
+  }
   <div class="meta">
-    <span>{title}</span>
+    <span>{title}{external && <span class="muted"> ↗</span>}</span>
     <span class="muted">{category}</span>
   </div>
 </a>
@@ -21,12 +33,27 @@ const { url, title, image, category } = Astro.props;
     display: none;
   }
 
-  img {
+  img,
+  .thumb {
     width: 100%;
     aspect-ratio: 16 / 10;
-    object-fit: cover;
     border-radius: 6px;
     background: var(--card);
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  .thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--muted);
   }
 
   .meta {
@@ -34,5 +61,10 @@ const { url, title, image, category } = Astro.props;
     justify-content: space-between;
     gap: 12px;
     font-size: 15px;
+  }
+
+  .meta > .muted {
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 </style>

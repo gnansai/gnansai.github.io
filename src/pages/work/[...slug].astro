@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-    const projectEntries = await getCollection("threeDProjects");
+    const projectEntries = await getCollection("threeDProjects", (entry) => !entry.data.liveUrl && !entry.data.postUrl);
     return projectEntries.map((entry) => ({
         params: { slug: entry.id },
         props: { entry },
@@ -12,7 +12,8 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, category, toolsUsed, thumbnailImage } = entry.data;
+const { title, category, toolsUsed, dateCompleted, artstationUrl, embeds } = entry.data;
+const year = dateCompleted?.slice(0, 4);
 ---
 
 <BaseLayout pageTitle={title}>
@@ -20,9 +21,16 @@ const { title, category, toolsUsed, thumbnailImage } = entry.data;
     <a class="back muted" href="/">← All work</a>
     <header>
       <h1>{title}</h1>
-      <p class="muted">{category} · {toolsUsed.join(", ")}</p>
+      <p class="muted">{[category, year, toolsUsed.join(", ")].filter(Boolean).join(" · ")}</p>
+      {
+        artstationUrl && (
+          <a class="external muted" href={artstationUrl} target="_blank" rel="noopener noreferrer">
+            View on ArtStation ↗
+          </a>
+        )
+      }
     </header>
-    <img class="cover" src={thumbnailImage.url} alt={thumbnailImage.alt} />
+    {embeds.map((src) => <iframe class="cover video" src={src} title={title} allowfullscreen />)}
     <div class="prose">
       <Content />
     </div>
@@ -61,20 +69,69 @@ const { title, category, toolsUsed, thumbnailImage } = entry.data;
     background: var(--card);
   }
 
+  .video {
+    display: block;
+    aspect-ratio: 16 / 9;
+    border: 0;
+  }
+
   .prose {
-    max-width: 720px;
     font-size: 17px;
   }
 
   .prose :global(p) {
+    max-width: 720px;
     margin: 0 0 1.4em;
   }
 
-  .prose :global(img) {
+  /* Markdown wraps images in a <p>; let those go full width. */
+  .prose :global(p:has(img)) {
+    max-width: none;
+  }
+
+  .prose :global(img),
+  .prose :global(iframe),
+  .prose :global(video) {
     width: 100%;
     height: auto;
     margin: 0 0 1.4em;
     border-radius: 6px;
     background: var(--card);
+  }
+
+  .prose :global(iframe) {
+    display: block;
+    aspect-ratio: 16 / 9;
+    border: 0;
+  }
+
+  .prose :global(video) {
+    display: block;
+  }
+
+  .prose :global(figure) {
+    margin: 0 0 1.4em;
+  }
+
+  .prose :global(figure) :global(video) {
+    margin-bottom: 8px;
+  }
+
+  .prose :global(figcaption) {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .prose :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .external {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 15px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 </style>

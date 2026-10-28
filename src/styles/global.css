@@ -11,14 +11,14 @@
 }
 
 [data-theme="dark"] {
-  --bg: #111214;
+  --bg: #1D1E21;
   --fg: #ECECEA;
-  --muted: #9DA1A7;
+  --muted: #A6AAB0;
   --accent: #F0965A;
-  --card: #1F2023;
-  --line: #2A2C30;
-  --band: #18191B;
-  --btn-line: #34363A;
+  --card: #2B2C30;
+  --line: #36383C;
+  --band: #25262A;
+  --btn-line: #44464B;
   color-scheme: dark;
 }
 
