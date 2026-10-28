@@ -4,7 +4,7 @@ thumbnailImage:
     url: '/projects/web3d/time-viz-02.jpg'
     alt: 'Colorful voxel clock digits reflected in water'
 toolsUsed: ["three.js"]
-category: 'Web 3D'
+category: 'Interactive 3D'
 ---
 
 A series of real-time time visualizations built with Three.js. Click an image to open the live demo.
@@ -27,19 +27,19 @@ A series of real-time time visualizations built with Three.js. Click an image to
 
 [Live demo ↗](https://gnanasai-threejs-time-viz-03.vercel.app/) · [Post on X ↗](https://x.com/Gnanasa123456/status/1960576366547452006)
 
-[![Time Viz 03: dark outlined clock digits reflected in water](/projects/web3d/time-viz-03.jpg)](https://gnanasai-threejs-time-viz-03.vercel.app/)
+[![Time Viz 03: rainbow layered clock digits reflected in water](/projects/web3d/time-viz-03.jpg)](https://gnanasai-threejs-time-viz-03.vercel.app/)
 
 ## Time Viz 04
 
 [Live demo ↗](https://gnanasai-threejs-time-viz-04.vercel.app/) · [Post on X ↗](https://x.com/Gnanasa123456/status/1962094784723427663)
 
-[![Time Viz 04: hanging light bulbs over a tiled floor](/projects/web3d/time-viz-04.jpg)](https://gnanasai-threejs-time-viz-04.vercel.app/)
+[![Time Viz 04: glowing segment clock digits under hanging light bulbs](/projects/web3d/time-viz-04.jpg)](https://gnanasai-threejs-time-viz-04.vercel.app/)
 
 ## Time Viz 06
 
 [Live demo ↗](https://threejs-time-viz-06.vercel.app/) · [Post on X ↗](https://x.com/Gnanasa123456/status/1996905316647342106)
 
-[![Time Viz 06: a library with three open books on stands](/projects/web3d/time-viz-06.jpg)](https://threejs-time-viz-06.vercel.app/)
+[![Time Viz 06: clock digits drawn on three open books in a library](/projects/web3d/time-viz-06.jpg)](https://threejs-time-viz-06.vercel.app/)
 
 ## Time Viz 07
 

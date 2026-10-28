@@ -38,11 +38,19 @@ const year = dateCompleted?.slice(0, 4);
 </BaseLayout>
 
 <style>
+  /* Same top spacing as the home page intro. */
   .project {
-    padding-block: 64px 120px;
+    padding-block: 36px 120px;
     display: flex;
     flex-direction: column;
     gap: 32px;
+  }
+
+  @media (max-width: 767px) {
+    .project {
+      padding-block: 28px 72px;
+      gap: 24px;
+    }
   }
 
   .back {

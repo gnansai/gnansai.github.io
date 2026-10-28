@@ -58,10 +58,16 @@ import { projectTypes } from "../data/porjectTypes.js";
 
 <style>
   .intro {
-    padding-block: 96px 80px;
+    padding-block: 36px 64px;
     display: flex;
     flex-direction: column;
     gap: 24px;
+  }
+
+  @media (max-width: 767px) {
+    .intro {
+      padding-block: 28px 48px;
+    }
   }
 
   h1 {

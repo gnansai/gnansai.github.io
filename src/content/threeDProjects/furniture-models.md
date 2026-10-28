@@ -5,7 +5,7 @@ thumbnailImage:
     url: '/projects/furniture-models/cover.jpg'
     alt: 'Leather armchair and recliner sofa renders'
 toolsUsed: ["blender", "krita"]
-category: 'Game Art'
+category: '3D Assets'
 artstationUrl: 'https://www.artstation.com/artwork/ZGlP3X'
 embeds:
     - 'https://sketchfab.com/models/c43f8e846cd847d58ea62407bf5c1879/embed'

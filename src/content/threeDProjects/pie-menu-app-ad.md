@@ -5,7 +5,7 @@ thumbnailImage:
     url: '/projects/pie-menu-app-ad/cover.jpg'
     alt: 'Pie Menu app icon advertisement frame'
 toolsUsed: ["blender", "davinci resolve"]
-category: 'Product Animations'
+category: 'Product Animation'
 artstationUrl: 'https://www.artstation.com/artwork/Nq44Oq'
 embeds:
     - 'https://www.youtube-nocookie.com/embed/Nu_fD8woc8g?rel=0'

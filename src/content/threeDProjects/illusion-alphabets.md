@@ -5,7 +5,7 @@ thumbnailImage:
     url: '/illusions_Alphabets/thumbnail_illusions_Alphabets.webp'
     alt: 'Letters A and B as illusion worlds: a tree with a floating island and a blue hotel building'
 toolsUsed: ["blender", "krita"]
-category: 'Renders'
+category: '3D Art'
 ---
 
 An alphabet illusion series made for 36 Days of Type, where each letter becomes its own small world.

@@ -4,7 +4,7 @@ thumbnailImage:
     url: '/projects/web3d/motion-design-03.jpg'
     alt: 'Three.js and Blender lettering made of curved lines'
 toolsUsed: ["three.js"]
-category: 'Web 3D'
+category: 'Interactive 3D'
 ---
 
 A series of real-time motion design pieces built with Three.js. Click an image to open the live demo.

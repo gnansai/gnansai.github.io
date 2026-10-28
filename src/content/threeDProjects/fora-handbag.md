@@ -5,7 +5,7 @@ thumbnailImage:
     url: '/projects/fora-handbag/cover.jpg'
     alt: 'Fora handbags on display podiums'
 toolsUsed: ["blender", "davinci resolve"]
-category: 'Product Animations'
+category: 'Product Animation'
 artstationUrl: 'https://www.artstation.com/artwork/0lELLK'
 embeds:
     - 'https://www.youtube-nocookie.com/embed/RZI4_HlYNGc?rel=0'

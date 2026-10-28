@@ -11,5 +11,8 @@ export default defineConfig({
         '/work/illusion-a-almighty': '/work/illusion-alphabets',
         '/work/illusion-b-building': '/work/illusion-alphabets',
         '/work/illusion-c-cold-closet': '/work/illusion-alphabets',
+        '/work/medieval-pistol': '/work/game-ready-weapons',
+        '/work/steampunk-weapon': '/work/game-ready-weapons',
+        '/work/austrian-gun': '/work/game-ready-weapons',
     },
 });

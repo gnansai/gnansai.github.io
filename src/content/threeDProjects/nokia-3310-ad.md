@@ -5,7 +5,7 @@ thumbnailImage:
     url: '/projects/nokia-3310-ad/cover.jpg'
     alt: 'Nokia 3310 phone render'
 toolsUsed: ["blender", "krita", "davinci resolve"]
-category: 'Product Animations'
+category: 'Product Animation'
 artstationUrl: 'https://www.artstation.com/artwork/YeB8GV'
 embeds:
     - 'https://www.youtube-nocookie.com/embed/ctk4uLtM5tc?rel=0'

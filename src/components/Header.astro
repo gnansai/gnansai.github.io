@@ -65,6 +65,13 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     gap: 16px;
   }
 
+  @media (max-width: 767px) {
+    .bar {
+      padding-block: 12px;
+      gap: 4px 16px;
+    }
+  }
+
   @media (min-width: 768px) {
     .band {
       position: sticky;

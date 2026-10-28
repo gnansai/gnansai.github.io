@@ -7,7 +7,14 @@ import ProjectCard from "../components/ProjectCard.astro";
 const projects = (await getCollection("threeDProjects")).sort((a, b) =>
   (b.data.dateCompleted ?? "").localeCompare(a.data.dateCompleted ?? "")
 );
-const filters = ["All", ...new Set(projects.map((project) => project.data.category))];
+// Filters in this order; any other category in use is added after them.
+const categoryOrder = ["Product Animation", "Interactive 3D", "3D Assets", "3D Art"];
+const used = new Set(projects.map((project) => project.data.category));
+const filters = [
+  "All",
+  ...categoryOrder.filter((category) => used.has(category)),
+  ...[...used].filter((category) => !categoryOrder.includes(category)),
+];
 ---
 
 <BaseLayout>
@@ -47,30 +54,30 @@ const filters = ["All", ...new Set(projects.map((project) => project.data.catego
 
 <style>
   .intro {
-    padding-block: 56px 32px;
+    padding-block: 36px 20px;
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 28px;
   }
 
   .hero {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
   }
 
   h1 {
     margin: 0;
-    max-width: 640px;
+    max-width: 560px;
     font-weight: 500;
-    font-size: clamp(28px, 3.5vw, 40px);
+    font-size: clamp(28px, 2.8vw, 34px);
     line-height: 1.15;
     letter-spacing: -0.02em;
   }
 
   .hero p {
     margin: 0;
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .filters {
@@ -102,6 +109,41 @@ const filters = ["All", ...new Set(projects.map((project) => project.data.catego
 
   .list {
     padding-bottom: 120px;
+  }
+
+  @media (max-width: 767px) {
+    .intro {
+      padding-block: 28px 16px;
+      gap: 20px;
+    }
+
+    .hero {
+      gap: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 15px;
+    }
+
+    /* Wrap onto a second line, with rows close together. */
+    .filters {
+      gap: 0 18px;
+    }
+
+    .filters button {
+      padding-block: 6px;
+      min-height: 40px;
+      white-space: nowrap;
+    }
+
+    .list {
+      padding-bottom: 72px;
+    }
   }
 
   .visually-hidden {

@@ -5,7 +5,7 @@ thumbnailImage:
     url: '/gameAssets_YashicaTLRVintageCamera/gnan-sai-reddy-123-fotor.jpg'
     alt: 'Yashica TLR vintage camera render and wireframe'
 toolsUsed: ["blender", "photoshop", "unity"]
-category: 'Game Art'
+category: '3D Assets'
 artstationUrl: 'https://www.artstation.com/artwork/vLqYE'
 embeds:
     - 'https://sketchfab.com/models/3da7ca9ccc654a408c7b97216e945bba/embed'
