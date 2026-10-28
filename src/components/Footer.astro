@@ -1,0 +1,49 @@
+---
+import { socialLinks } from "../data/socialLinks.js";
+---
+
+<footer class="band">
+  <div class="wrap bar">
+    <span>© {new Date().getFullYear()} Gnana Sai</span>
+    <nav aria-label="Social" class="social">
+      {
+        socialLinks.map((item) => (
+          <a href={item.link} target="_blank" rel="noopener noreferrer">
+            {item.name}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .band {
+    background: var(--band);
+    border-top: 1px solid var(--line);
+  }
+
+  .bar {
+    padding-block: 28px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .social a {
+    color: var(--muted);
+  }
+
+  .social a:hover {
+    color: var(--accent);
+  }
+</style>

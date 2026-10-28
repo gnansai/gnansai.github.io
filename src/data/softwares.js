@@ -14,5 +14,5 @@ export const softwares = [{
     name: "After Effects"
 },
 {
-    name: "Threejs "
+    name: "Three.js"
 }]

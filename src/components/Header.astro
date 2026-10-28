@@ -1,0 +1,174 @@
+---
+import { navItems } from "../data/navItems.js";
+import { email, socialLinks } from "../data/socialLinks.js";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header class="band">
+  <div class="wrap bar">
+    <a class="brand" href="/">GnanaSai</a>
+
+    <nav aria-label="Main" class="main-nav">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.link}
+            aria-current={
+              (item.link === "/" ? path === "/" || path.startsWith("/work") : path.startsWith(item.link))
+                ? "page"
+                : undefined
+            }
+          >
+            {item.title}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="end">
+      <nav aria-label="Contact" class="contact">
+        {email && <a class="strong" href={`mailto:${email}`}>Email</a>}
+        {
+          socialLinks
+            .filter((item) => item.icon)
+            .map((item) => (
+              <a class="icon-link" href={item.link} target="_blank" rel="noopener noreferrer" aria-label={item.name} title={item.name}>
+                <svg aria-hidden="true" width="18" height="18" viewBox={item.icon.viewBox} fill="currentColor">
+                  <path d={item.icon.path} />
+                </svg>
+              </a>
+            ))
+        }
+      </nav>
+
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark theme">
+        <svg class="icon-moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+        <svg class="icon-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .band {
+    background: var(--band);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bar {
+    padding-block: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .band {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: color-mix(in srgb, var(--band) 85%, transparent);
+      backdrop-filter: blur(12px);
+    }
+
+    .bar {
+      padding-block: 16px;
+    }
+  }
+
+  .brand {
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    font-size: 15px;
+  }
+
+  .main-nav a,
+  .contact a {
+    color: var(--muted);
+  }
+
+  .main-nav a[aria-current="page"],
+  .contact a.strong {
+    color: var(--fg);
+  }
+
+  .main-nav a:hover,
+  .contact a:hover {
+    color: var(--accent);
+  }
+
+  .end {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+  }
+
+  .icon-link {
+    width: 32px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-toggle {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--btn-line);
+    border-radius: 999px;
+    background: none;
+    color: var(--fg);
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover {
+    color: var(--accent);
+  }
+
+  .icon-sun,
+  :global([data-theme="dark"]) .icon-moon {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .icon-sun {
+    display: block;
+  }
+</style>
+
+<script>
+  const button = document.getElementById("theme-toggle");
+
+  function setLabel() {
+    const dark = document.documentElement.dataset.theme === "dark";
+    button?.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+  }
+
+  setLabel();
+  button?.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("theme", next);
+    setLabel();
+  });
+</script>

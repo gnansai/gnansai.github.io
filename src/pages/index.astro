@@ -1,7 +1,126 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = await getCollection("threeDProjects");
+const filters = ["All", ...new Set(projects.map((project) => project.data.category))];
 ---
 
 <BaseLayout>
-  <main></main>
+  <section class="wrap intro">
+    <div class="hero">
+      <h1>3D technical artist making product visuals and interactive 3D for the web.</h1>
+      <p class="muted">Blender · Three.js · WebGPU — based in India, working worldwide.</p>
+    </div>
+    <div role="group" aria-label="Filter projects" class="filters">
+      {
+        filters.map((label) => (
+          <button type="button" data-filter={label} aria-pressed={label === "All" ? "true" : "false"}>
+            {label}
+          </button>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap list">
+    <h2 class="visually-hidden">Work</h2>
+    <div class="project-grid">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            url={`/work/${project.id}/`}
+            title={project.data.title}
+            image={project.data.thumbnailImage}
+            category={project.data.category}
+          />
+        ))
+      }
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .intro {
+    padding-block: 120px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h1 {
+    margin: 0;
+    max-width: 760px;
+    font-weight: 500;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .hero p {
+    margin: 0;
+    font-size: 17px;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+  }
+
+  .filters button {
+    font: inherit;
+    font-size: 15px;
+    padding: 10px 0;
+    min-height: 44px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .filters button:hover {
+    color: var(--accent);
+  }
+
+  .filters button[aria-pressed="true"] {
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+
+  .list {
+    padding-bottom: 120px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const cards = document.querySelectorAll<HTMLElement>("[data-category]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const active = button.dataset.filter;
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+      cards.forEach((card) => {
+        card.hidden = active !== "All" && card.dataset.category !== active;
+      });
+    });
+  });
+</script>

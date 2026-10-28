@@ -1,107 +1,120 @@
 ---
-import { navItems } from "../data/navItems.js";
-
-import { socialLinks } from "../data/socialLinks.js";
-
-import { softwares } from "../data/softwares";
-
-import { projectTypes } from "../data/porjectTypes";
-
-import Navigation from "../components/Navigation.astro";
-import Footer from "../components/Footer.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-const pageTitle = "About Me";
+import { email, socialLinks } from "../data/socialLinks.js";
+import { softwares } from "../data/softwares.js";
+import { projectTypes } from "../data/porjectTypes.js";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-   
-  </head>
-  <body>
-    <BaseLayout>
-      <section>
-        <div class="container text-center mt-5">
-          <!-- Image section -->
-          <img
-            src="gnana-sai-reddy-a-2-worlds-24.webp"
-            class="img-fluid rounded-circle mb-4"
-            alt="Gnana Sai"
-            width="200"
-          />
-          <h2>Gnana Sai</h2>
-          <p class="mt-3">
-            I am a 3D Generalist specializing in creating immersive and engaging
-            visuals using Blender as my primary tool. My passion lies in
-            transforming ideas into stunning 3D art.
-          </p>
-          <br />
-          <!-- Tools section -->
-          <h4>Tools that I use</h4>
-          <div class="mt-3">
-            <ul class="list-inline">
-              {
-                softwares.map((item) => (
-                  <li class="list-inline-item bg-body-tertiary p-2 m-1 rounded">
-                    {item.name}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-          <!-- Projects section -->
-          <h4 class="mt-4">Types of Projects I’ve Worked On</h4>
-          <div class="mt-3">
-            <ul class="list-inline">
-              {
-                projectTypes.map((item) => (
-                  <li class="list-inline-item bg-body-tertiary p-2 m-1 rounded">
-                    {item.name}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-          <!-- Social links -->
-          <div class="mt-4">
-            <h4>Connect with Me</h4>
-            <ul class="list-inline">
-              {
-                socialLinks.map((item) => (
-                  <li class="list-inline-item">
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        class="icon"
-                        src={item.img.src}
-                        width="25"
-                        alt={item.img.alt}
-                      />
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
+<BaseLayout pageTitle="About">
+  <section class="wrap intro">
+    <h1>About</h1>
+    <p class="lead">
+      I'm Gnana Sai, a freelance 3D artist with a background in visual communication and animation.
+      I've delivered 79 projects for clients worldwide — product models, renders, animations and
+      real-time web experiences. Blender is my main tool; Three.js takes it to the browser.
+    </p>
+  </section>
+
+  <section class="wrap block">
+    <h2 class="section-label">Tools</h2>
+    <ul class="tags">
+      {softwares.map((item) => <li>{item.name}</li>)}
+    </ul>
+  </section>
+
+  <section class="wrap block">
+    <h2 class="section-label">Projects I work on</h2>
+    <ul class="tags">
+      {projectTypes.map((item) => <li>{item.name}</li>)}
+    </ul>
+  </section>
+
+  <section class="wrap block">
+    <h2 class="section-label">Elsewhere</h2>
+    <ul class="links">
+      {
+        socialLinks.map((item) => (
+          <li>
+            <a href={item.link} target="_blank" rel="noopener noreferrer">
+              {item.name} ↗
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    email && (
+      <section id="contact" class="wrap block">
+        <h2 class="section-label">Contact</h2>
+        <p class="lead">
+          Have a project in mind? <a class="accent" href={`mailto:${email}`}>{email}</a>
+        </p>
       </section>
-    </BaseLayout>
-  </body>
-</html>
+    )
+  }
+</BaseLayout>
 
 <style>
-  .icon {
-    filter: invert(48%);
-    transition: filter 0.3s; /* Smooth transition for filter changes */
+  .intro {
+    padding-block: 96px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
-  /* Add hover effect */
-  /* .icon:hover {
-    filter: brightness(0) invert(1); 
-  } */
+  h1 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 40px;
+    letter-spacing: -0.02em;
+  }
+
+  .lead {
+    margin: 0;
+    max-width: 720px;
+    font-size: 20px;
+    line-height: 1.55;
+  }
+
+  .block {
+    padding-bottom: 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .block:last-of-type {
+    padding-bottom: 120px;
+  }
+
+  .tags,
+  .links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tags {
+    gap: 8px;
+  }
+
+  .tags li {
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 15px;
+  }
+
+  .links {
+    gap: 8px 28px;
+    font-size: 17px;
+  }
+
+  .accent {
+    color: var(--accent);
+  }
 </style>

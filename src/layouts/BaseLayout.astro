@@ -1,40 +1,39 @@
 ---
-import { ClientRouter, ViewTransitions } from "astro:transitions";
-import Navigation from "../components/Navigation.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
 const { pageTitle } = Astro.props;
-import "../styles/global.css";
-import "bootswatch/dist/litera/bootstrap.min.css";
-
-import { fade } from 'astro:transitions';
+const title = pageTitle ? `${pageTitle} — GnanaSai` : "GnanaSai — 3D Technical Artist";
 ---
 
-<html lang="en" transition:name="root" transition:animate="none">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>{title}</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
-    <ClientRouter  />
+    <script is:inline>
+      const saved = localStorage.getItem("theme");
+      const dark = saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
+    </script>
   </head>
 
   <body>
-    <div transition:animate={fade({ duration: '0.4s' })}  class="container" style="padding-top: 4rem;">
-      <Navigation />
-
-      <h1 >{pageTitle}</h1>
+    <Header />
+    <main>
       <slot />
-      <!-- <Footer /> -->
-    </div>
-    <script>
-      import "bootstrap/dist/js/bootstrap.bundle.min.js";
-    </script>
+    </main>
+    <Footer />
   </body>
 </html>

@@ -1,0 +1,80 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const projectEntries = await getCollection("threeDProjects");
+    return projectEntries.map((entry) => ({
+        params: { slug: entry.id },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, category, toolsUsed, thumbnailImage } = entry.data;
+---
+
+<BaseLayout pageTitle={title}>
+  <article class="wrap project">
+    <a class="back muted" href="/">← All work</a>
+    <header>
+      <h1>{title}</h1>
+      <p class="muted">{category} · {toolsUsed.join(", ")}</p>
+    </header>
+    <img class="cover" src={thumbnailImage.url} alt={thumbnailImage.alt} />
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    padding-block: 64px 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .back {
+    font-size: 15px;
+  }
+
+  h1 {
+    margin: 0 0 8px;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  header p {
+    margin: 0;
+    font-size: 15px;
+    text-transform: capitalize;
+  }
+
+  .cover {
+    width: 100%;
+    border-radius: 6px;
+    background: var(--card);
+  }
+
+  .prose {
+    max-width: 720px;
+    font-size: 17px;
+  }
+
+  .prose :global(p) {
+    margin: 0 0 1.4em;
+  }
+
+  .prose :global(img) {
+    width: 100%;
+    height: auto;
+    margin: 0 0 1.4em;
+    border-radius: 6px;
+    background: var(--card);
+  }
+</style>

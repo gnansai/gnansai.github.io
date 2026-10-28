@@ -1,11 +1,11 @@
 ---
-title: 'Post 4'
-author: Tristen Tomczak
+title: 'Yashica TLR Vintage Camera'
 dateCompleted: '09-09-2024'
 thumbnailImage:
-    url: '/blog-post.webp'
-    alt: 'Post Thumbnail'
+    url: '/gameAssets_YashicaTLRVintageCamera/gnan-sai-reddy-123-fotor.jpg'
+    alt: 'Yashica TLR vintage camera render'
 toolsUsed: ["blender","krita"]
+category: 'Game Art'
 ---
 
 Aenean a ex et metus finibus malesuada commodo in magna. In ut libero urna. Aenean in quam in ipsum rutrum egestas. Donec semper dignissim ante. Sed efficitur mi et sapien ultrices malesuada. Aliquam fermentum aliquam ante, eu semper mi vestibulum quis. Sed et purus metus. Pellentesque vestibulum commodo euismod. Duis a mauris accumsan lorem laoreet tempor. Mauris accumsan varius metus, in rutrum magna accumsan eget. Pellentesque at leo at sem tempor hendrerit non sit amet ante. Cras commodo augue sed magna rutrum rutrum.

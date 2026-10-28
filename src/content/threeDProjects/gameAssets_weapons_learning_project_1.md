@@ -1,11 +1,11 @@
 ---
-title: 'Post'
-author: Tristen Tomczak
+title: 'Game-Ready Weapons'
 dateCompleted: '09-09-2024'
 thumbnailImage:
     url: '/blog-post.webp'
-    alt: 'Post Thumbnail'
+    alt: 'Low-poly game weapons'
 toolsUsed: ["blender","krita"]
+category: 'Game Art'
 ---
 
 Aenean a ex et metus finibus malesuada commodo in magna. In ut libero urna. Aenean in quam in ipsum rutrum egestas. Donec semper dignissim ante. Sed efficitur mi et sapien ultrices malesuada. Aliquam fermentum aliquam ante, eu semper mi vestibulum quis. Sed et purus metus. Pellentesque vestibulum commodo euismod. Duis a mam magna accumsan eget. Pellentesque at leo at sem tempor hendrerit non sit amet ante. Cras commodo augue sed magna rutrum rutrum.
