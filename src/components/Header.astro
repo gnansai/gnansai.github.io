@@ -65,10 +65,40 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     gap: 16px;
   }
 
+  /* Phones: logo, nav and theme toggle on one row; social icons below. */
   @media (max-width: 767px) {
     .bar {
       padding-block: 12px;
-      gap: 4px 16px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas:
+        "brand nav toggle"
+        "contact contact contact";
+      align-items: center;
+      gap: 4px 20px;
+    }
+
+    /* ".bar >" so these win over the general rules further down. */
+    .bar > .brand {
+      grid-area: brand;
+    }
+
+    .bar > .main-nav {
+      grid-area: nav;
+      gap: 20px;
+    }
+
+    .bar > .end {
+      display: contents;
+    }
+
+    .end > .contact {
+      grid-area: contact;
+      margin-left: -8px;
+    }
+
+    .end > .theme-toggle {
+      grid-area: toggle;
     }
   }
 
