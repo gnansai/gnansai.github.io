@@ -3,30 +3,5 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <main>
-    <div class="h-screen w-screen" style="height: 512px;" id="container"></div>
-  </main>
+  <main></main>
 </BaseLayout>
-
-<script>
-  import { Sketch } from "../scripts/world.js";
-  let sketch = new Sketch({
-    domElement: document.getElementById("container"),
-  });
-
-  sketch.resize();
-  sketch.addObjects();
-  sketch.render();
-  sketch.setupResize();
-
-
-  document.addEventListener("astro:page-load", () => {
-    if (document.getElementById("container")) {
-	  sketch.container =  document.getElementById("container");
-      sketch.resize();
-      sketch.addObjects();
-      sketch.render();
-      sketch.setupResize();
-    }
-  });
-</script>
