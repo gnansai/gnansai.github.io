@@ -8,5 +8,8 @@ export default defineConfig({
         '/threeDProjects': '/',
         '/threeDProjects/[...slug]': '/work/[...slug]',
         '/webGLProjects': '/',
+        '/work/illusion-a-almighty': '/work/illusion-alphabets',
+        '/work/illusion-b-building': '/work/illusion-alphabets',
+        '/work/illusion-c-cold-closet': '/work/illusion-alphabets',
     },
 });
