@@ -3,96 +3,175 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { email, socialLinks } from "../data/socialLinks.js";
 import { softwares } from "../data/softwares.js";
 import { projectTypes } from "../data/porjectTypes.js";
+
+const upwork = socialLinks.find((item) => item.name === "Upwork");
 ---
 
 <BaseLayout pageTitle="About">
-  <section class="wrap intro">
-    <h1>About</h1>
-    <p class="lead">
-      I'm Gnana Sai, a freelance 3D artist with a background in visual communication and animation.
-      I've delivered 79 projects for clients worldwide — product models, renders, animations and
-      real-time web experiences. Blender is my main tool; Three.js takes it to the browser.
-    </p>
-  </section>
-
-  <section class="wrap block">
-    <h2 class="section-label">Tools</h2>
-    <ul class="tags">
-      {softwares.map((item) => <li>{item.name}</li>)}
-    </ul>
-  </section>
-
-  <section class="wrap block">
-    <h2 class="section-label">Projects I work on</h2>
-    <ul class="tags">
-      {projectTypes.map((item) => <li>{item.name}</li>)}
-    </ul>
-  </section>
-
-  <section class="wrap block">
-    <h2 class="section-label">Elsewhere</h2>
-    <ul class="links">
+  <div class="wrap about">
+    <aside class="profile">
+      <img class="photo" src="/about/gnana-sai.jpg" alt="Gnana Sai in the mountains" width="400" height="400" />
+      <div class="who">
+        <p class="name">Gnana Sai</p>
+        <p class="muted">3D Technical Artist</p>
+        <p class="muted">Based in India, working worldwide</p>
+      </div>
       {
-        socialLinks.map((item) => (
-          <li>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              {item.name} ↗
-            </a>
-          </li>
-        ))
+        upwork && (
+          <a class="cta" href={upwork.link} target="_blank" rel="noopener noreferrer">
+            Hire me on Upwork ↗
+          </a>
+        )
       }
-    </ul>
-  </section>
+    </aside>
 
-  {
-    email && (
-      <section id="contact" class="wrap block">
-        <h2 class="section-label">Contact</h2>
-        <p class="lead">
-          Have a project in mind? <a class="accent" href={`mailto:${email}`}>{email}</a>
-        </p>
-      </section>
-    )
-  }
+    <div class="content">
+      <h1>About</h1>
+      <p class="lead">
+        I'm Gnana Sai, a freelance 3D artist with a background in visual communication and animation.
+        I've delivered 79 projects for clients worldwide — product models, renders, animations and
+        real-time web experiences. Blender is my main tool; Three.js takes it to the browser.
+      </p>
+
+      <dl class="rows">
+        <div class="row">
+          <dt>Tools</dt>
+          <dd>
+            <ul class="tags">
+              {softwares.map((item) => <li>{item.name}</li>)}
+            </ul>
+          </dd>
+        </div>
+
+        <div class="row">
+          <dt>Projects I work on</dt>
+          <dd>
+            <ul class="tags">
+              {projectTypes.map((item) => <li>{item.name}</li>)}
+            </ul>
+          </dd>
+        </div>
+
+        <div class="row">
+          <dt>Elsewhere</dt>
+          <dd>
+            <ul class="links">
+              {
+                socialLinks.map((item) => (
+                  <li>
+                    <a href={item.link} target="_blank" rel="noopener noreferrer">
+                      {item.name} ↗
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </dd>
+        </div>
+
+        {
+          email && (
+            <div class="row" id="contact">
+              <dt>Contact</dt>
+              <dd>
+                <a class="accent" href={`mailto:${email}`}>{email}</a>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+    </div>
+  </div>
 </BaseLayout>
 
 <style>
-  .intro {
-    padding-block: 36px 64px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  .about {
+    padding-block: 36px 120px;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 64px;
+    align-items: start;
   }
 
-  @media (max-width: 767px) {
-    .intro {
-      padding-block: 28px 48px;
-    }
+  /* Profile card stays in view under the sticky header. */
+  .profile {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    background: var(--card);
+  }
+
+  .who p {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .who .name {
+    margin-bottom: 2px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .cta {
+    min-height: 44px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--btn-line);
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .cta:hover {
+    border-color: var(--accent);
   }
 
   h1 {
-    margin: 0;
+    margin: 0 0 20px;
     font-weight: 500;
     font-size: 40px;
     letter-spacing: -0.02em;
   }
 
   .lead {
-    margin: 0;
-    max-width: 720px;
+    margin: 0 0 48px;
+    max-width: 640px;
     font-size: 20px;
     line-height: 1.55;
   }
 
-  .block {
-    padding-bottom: 72px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .rows {
+    margin: 0;
   }
 
-  .block:last-of-type {
-    padding-bottom: 120px;
+  .row {
+    padding-block: 24px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 12px 24px;
+  }
+
+  .row dt {
+    padding-top: 7px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .row dd {
+    margin: 0;
   }
 
   .tags,
@@ -116,11 +195,58 @@ import { projectTypes } from "../data/porjectTypes.js";
   }
 
   .links {
-    gap: 8px 28px;
-    font-size: 17px;
+    padding-top: 6px;
+    gap: 8px 24px;
+    font-size: 16px;
   }
 
   .accent {
+    display: inline-block;
+    padding-top: 6px;
     color: var(--accent);
+  }
+
+  @media (max-width: 860px) {
+    .about {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+    }
+
+    /* Photo beside the name instead of above it. */
+    .profile {
+      position: static;
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px 20px;
+    }
+
+    .cta {
+      grid-column: 1 / -1;
+      justify-self: start;
+    }
+
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .row dt {
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about {
+      padding-block: 28px 72px;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    .lead {
+      margin-bottom: 32px;
+      font-size: 17px;
+    }
   }
 </style>

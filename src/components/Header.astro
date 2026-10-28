@@ -7,7 +7,10 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 
 <header class="band">
   <div class="wrap bar">
-    <a class="brand" href="/">GnanaSai</a>
+    <a class="brand" href="/">
+      <img src="/logo.jpg" alt="" width="32" height="32" />
+      GnanaSai
+    </a>
 
     <nav aria-label="Main" class="main-nav">
       {
@@ -65,15 +68,15 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     gap: 16px;
   }
 
-  /* Phones: logo, nav and theme toggle on one row; social icons below. */
+  /* Phones: logo left, nav and theme toggle right; social icons below. */
   @media (max-width: 767px) {
     .bar {
       padding-block: 12px;
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: auto 1fr auto auto;
       grid-template-areas:
-        "brand nav toggle"
-        "contact contact contact";
+        "brand . nav toggle"
+        "contact contact contact contact";
       align-items: center;
       gap: 4px 20px;
     }
@@ -94,7 +97,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 
     .end > .contact {
       grid-area: contact;
-      margin-left: -8px;
+      justify-content: center;
     }
 
     .end > .theme-toggle {
@@ -117,8 +120,18 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
   }
 
   .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-weight: 600;
     font-size: 17px;
+  }
+
+  .brand img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: cover;
   }
 
   .main-nav {
