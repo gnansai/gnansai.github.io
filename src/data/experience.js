@@ -1,0 +1,41 @@
+// Newest first. Leave `end` empty for a current role; `description`, `stats` and `link` are optional.
+export const experience = [
+    {
+        role: "Senior 3D Web Engineer",
+        company: "Bryto",
+        type: "Freelance",
+        location: "Remote",
+        start: "2026",
+        end: "",
+        link: "https://bryto.com/",
+    },
+    {
+        role: "CG Generalist",
+        company: "Upwork",
+        type: "Freelance",
+        location: "Remote",
+        start: "2020",
+        end: "",
+        link: "https://www.upwork.com/freelancers/~0121c5733ab653a5c6",
+        description: "Real-time 3D content, product visualizations and XR work for clients worldwide — Blender, Three.js.",
+        stats: ["70 completed jobs", "3,200+ hours"],
+    },
+    {
+        role: "Blender Technical Artist",
+        company: "3DStreet",
+        type: "Freelance",
+        location: "Remote",
+        start: "2023",
+        end: "2024",
+        link: "https://www.3dstreet.com/",
+        description: "Created and optimized web-ready 3D assets and animations for 3DStreet with Blender.",
+    },
+    {
+        role: "3D Artist",
+        company: "Vivi5 Studios",
+        type: "Full-time",
+        location: "Bangalore, India",
+        start: "2018",
+        end: "2020",
+    },
+];
